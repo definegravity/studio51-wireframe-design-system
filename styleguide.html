@@ -96,7 +96,7 @@
     /* Tags */
     .tag { display: inline-block; background: var(--white); border: 1px solid var(--grey-300); border-radius: var(--radius-sm); padding: 8px 12px; font-size: 16px; font-weight: 600; }
     .tag-row { display: flex; flex-wrap: wrap; gap: 12px; }
-    .pill { display: inline-block; padding: 12px 24px; border-radius: var(--radius-full); font-size: 16px; font-weight: 600; }
+    .pill { display: inline-block; padding: 8px 16px; border-radius: var(--radius-full); font-size: var(--small); font-weight: 500; }
     .pill-active { background: var(--black); color: var(--white); }
     .pill-inactive { background: transparent; color: var(--black); border: 1px solid var(--black); }
 
@@ -272,7 +272,7 @@
   <!-- INPUTS & TAGS -->
   <section class="sg-section" id="inputs">
     <h2 class="sg-section-title">Inputs, Tags &amp; Filter Pills</h2>
-    <p class="sg-section-desc">Inputs: 43px tall, 32px radius, 1px black border. Tags: 8px radius, grey-300 border. Filter pills reuse the button pill; active fills black, inactive is the secondary outline.</p>
+    <p class="sg-section-desc">Inputs: 43px tall, 32px radius, 1px black border. Tags: 8px radius, grey-300 border. Filter pills are compact chips (14px text, 8/16px padding) — smaller than buttons so they don't read as one; active fills black, inactive is the outline.</p>
 
     <div class="sg-sub">Input field</div>
     <input class="field" type="text" placeholder="Search…">

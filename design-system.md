@@ -132,7 +132,7 @@ Extracted from the ADCE Redesign wireframes. Use as a reusable baseline for all 
 - **Text**: `heading-6` (16px SemiBold)
 - **Shape**: Full pill (border-radius 80px)
 - **With icon**: Add 10px gap between label and icon; reduce right padding to 18px
-- **Active state** (e.g. filter pills): Primary fills; inactive uses Secondary
+- **Active state**: Primary fills; inactive uses Secondary
 
 ### Input Fields
 
@@ -153,6 +153,18 @@ Extracted from the ADCE Redesign wireframes. Use as a reusable baseline for all 
 | Border radius | 8px |
 | Padding | 12px / 8px |
 | Text | `heading-6` (16px SemiBold) |
+
+### Filter Pills
+
+Compact chips for filtering lists and archives. Deliberately smaller than buttons so they don't read as primary actions.
+
+| Property | Value |
+|----------|-------|
+| Text | `small` (14px, weight 500) |
+| Padding | 8px vertical, 16px horizontal |
+| Border radius | `radius-full` (80px, pill) |
+| Active | `black` fill, `white` text |
+| Inactive | transparent, 1px `black` border, `black` text |
 
 ### Cards
 
