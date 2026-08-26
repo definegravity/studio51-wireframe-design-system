@@ -2,8 +2,6 @@
 
 The reusable, brand-neutral design system for partner wireframes and prototypes. Copy the tokens, build your wireframe, then override colours and fonts with the partner's brand during visual design.
 
-This is the system behind the Locus Magazine prototypes, extracted back to its neutral baseline so any project can start from it.
-
 ## What's here
 
 | File | What it is |
