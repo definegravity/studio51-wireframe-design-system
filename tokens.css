@@ -1,0 +1,72 @@
+/* ============================================================
+   Studio 51 — Wireframe Design System
+   Brand-neutral token layer.
+
+   Drop this into any wireframe/prototype and build on top.
+   Override the colour and font tokens with a partner's brand
+   during the visual design phase; keep the spacing, radius,
+   and responsive scales unless there's a strong reason not to.
+
+   Every token here maps cleanly to WordPress theme.json:
+   typography presets, colour palette, spacing scale, layout widths.
+   ============================================================ */
+
+:root {
+  /* ---- Neutrals (no accent colours in wireframes) ---- */
+  --white:    #FFFFFF;
+  --grey-50:  #F2F4F8; /* alternate section backgrounds, breadcrumb bar */
+  --grey-100: #F3F3F3; /* active nav item background */
+  --grey-200: #E4E4E4; /* footer body text on dark backgrounds */
+  --grey-300: #DFE4EA; /* image placeholders, tag borders, dividers */
+  --grey-400: #BCC1CB; /* placeholder borders, secondary borders */
+  --grey-500: #5C5E65; /* muted text, overline/category labels */
+  --black:    #25282D; /* primary text, primary fills, dark sections */
+
+  /* ---- Typography ---- */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-brand: 'Inter', sans-serif; /* swap for partner brand/logo face */
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+
+  /* Fluid type scale (375px -> 1440px). Headings use tight 100% line-height. */
+  --heading-1: clamp(32px, 1.5vw + 26px, 56px);
+  --heading-2: clamp(28px, 0.75vw + 25px, 40px);
+  --heading-3: clamp(24px, 0.5vw + 20px, 32px);
+  --heading-4: clamp(22px, 0.375vw + 19px, 28px);
+  --heading-5: 22px;
+  --heading-6: 16px;
+  --body:       16px;
+  --body-large: 18px;
+  --small:      14px;
+
+  /* ---- Spacing scale ---- */
+  --gap-xs:  8px;
+  --gap-sm:  16px;
+  --gap-md:  24px;
+  --gap-lg:  32px;
+  --gap-xl:  48px;
+  --gap-2xl: 56px;
+  --gap-3xl: 64px;
+  --gap-4xl: 72px;
+  --gap-5xl: 88px;
+
+  /* ---- Fluid page-level spacing (375px -> 1440px) ---- */
+  --page-gutter:     clamp(20px, 2.75vw + 10px, 64px);
+  --section-padding: clamp(48px, 2vw + 40px, 80px);
+  --grid-gutter:     clamp(16px, 1vw + 12px, 32px);
+
+  /* ---- Layout ---- */
+  --viewport-max: 1440px;
+  --viewport-min: 375px;
+  --content-max:  1344px; /* viewport-max minus 2 x 48px gutter */
+
+  /* ---- Border radius ---- */
+  --radius-sm:   8px;  /* tags, nav active states, image placeholders */
+  --radius-md:   16px; /* page frame containers */
+  --radius-lg:   32px; /* input fields */
+  --radius-full: 80px; /* buttons (pill) */
+
+  /* ---- Shadows: none in wireframes ---- */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+}

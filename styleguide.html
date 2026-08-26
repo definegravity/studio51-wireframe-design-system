@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio 51 — Wireframe Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--black); background: var(--white); line-height: 1.5; }
+
+    .sg-page { max-width: 1280px; margin: 0 auto; padding: 64px 48px 96px; }
+
+    .sg-header { padding-bottom: 40px; margin-bottom: 56px; border-bottom: 2px solid var(--black); }
+    .sg-header .eyebrow { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--grey-500); margin-bottom: 12px; }
+    .sg-header h1 { font-size: 56px; font-weight: 600; line-height: 1; letter-spacing: -1px; margin-bottom: 12px; }
+    .sg-header p { font-size: 18px; color: var(--grey-500); max-width: 640px; }
+
+    .sg-nav { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 28px; }
+    .sg-nav a { font-size: 14px; font-weight: 600; color: var(--grey-500); }
+    .sg-nav a:hover { color: var(--black); }
+
+    .sg-section { margin-bottom: 72px; scroll-margin-top: 24px; }
+    .sg-section-title { font-size: 32px; font-weight: 600; line-height: 1; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .sg-section-desc { font-size: 16px; color: var(--grey-500); margin-bottom: 32px; max-width: 680px; }
+    .sg-sub { margin: 40px 0 20px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--grey-500); }
+
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    code { font-family: var(--font-mono); font-size: 13px; background: var(--grey-50); padding: 2px 6px; border-radius: 4px; color: var(--black); }
+
+    /* Tables */
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--grey-300); vertical-align: middle; }
+    th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--grey-500); font-weight: 600; }
+    td code { white-space: nowrap; }
+
+    /* Colour swatches */
+    .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+    .swatch { border: 1px solid var(--grey-300); border-radius: 8px; overflow: hidden; }
+    .swatch .chip { height: 96px; }
+    .swatch .meta { padding: 12px 14px; }
+    .swatch .meta .name { font-weight: 600; font-size: 14px; }
+    .swatch .meta .hex { font-family: var(--font-mono); font-size: 12px; color: var(--grey-500); text-transform: uppercase; }
+    .swatch .meta .use { font-size: 12px; color: var(--grey-500); margin-top: 4px; }
+
+    /* Type specimens */
+    .type-row { display: flex; align-items: baseline; gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--grey-300); }
+    .type-row .label { flex: 0 0 200px; }
+    .type-row .label code { display: inline-block; margin-bottom: 4px; }
+    .type-row .label .specs { font-size: 12px; color: var(--grey-500); }
+    .type-row .specimen { line-height: 1; }
+    .t-h1 { font-size: var(--heading-1); font-weight: 600; }
+    .t-h2 { font-size: var(--heading-2); font-weight: 600; }
+    .t-h3 { font-size: var(--heading-3); font-weight: 500; }
+    .t-h4 { font-size: var(--heading-4); font-weight: 500; }
+    .t-h5 { font-size: var(--heading-5); font-weight: 600; }
+    .t-h6 { font-size: var(--heading-6); font-weight: 600; }
+    .t-body { font-size: var(--body); font-weight: 400; line-height: 1.41; }
+    .t-body-lg { font-size: var(--body-large); font-weight: 400; }
+    .t-small { font-size: var(--small); font-weight: 400; }
+
+    /* Spacing bars */
+    .space-row { display: flex; align-items: center; gap: 20px; padding: 8px 0; }
+    .space-row .label { flex: 0 0 220px; font-size: 13px; }
+    .space-row .label code { font-weight: 600; }
+    .space-row .bar { height: 20px; background: var(--black); border-radius: 3px; }
+
+    /* Radius demo */
+    .radius-grid { display: flex; flex-wrap: wrap; gap: 32px; }
+    .radius-demo { text-align: center; }
+    .radius-demo .box { width: 120px; height: 88px; background: var(--grey-50); border: 1px solid var(--grey-400); }
+    .radius-demo .cap { margin-top: 10px; font-size: 13px; }
+    .radius-demo .cap code { display: block; color: var(--grey-500); margin-top: 2px; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-sans); font-size: 16px; font-weight: 600; padding: 12px 24px; border-radius: var(--radius-full); border: none; cursor: pointer; transition: opacity .15s ease; }
+    .btn:hover { opacity: .85; }
+    .btn-primary { background: var(--black); color: var(--white); }
+    .btn-secondary { background: transparent; color: var(--black); border: 1px solid var(--black); }
+    .btn-inverted { background: var(--white); color: var(--black); }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+    .on-dark { background: var(--black); padding: 32px; border-radius: 16px; }
+
+    /* Inputs */
+    .field { height: 43px; border: 1px solid var(--black); border-radius: var(--radius-lg); padding: 4px 24px; font-family: var(--font-sans); font-size: 16px; width: 320px; max-width: 100%; }
+    .field::placeholder { color: var(--grey-500); }
+
+    /* Tags */
+    .tag { display: inline-block; background: var(--white); border: 1px solid var(--grey-300); border-radius: var(--radius-sm); padding: 8px 12px; font-size: 16px; font-weight: 600; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .pill { display: inline-block; padding: 12px 24px; border-radius: var(--radius-full); font-size: 16px; font-weight: 600; }
+    .pill-active { background: var(--black); color: var(--white); }
+    .pill-inactive { background: transparent; color: var(--black); border: 1px solid var(--black); }
+
+    /* Cards */
+    .card-grid { display: grid; gap: 32px; }
+    .card-grid.three { grid-template-columns: repeat(3, 1fr); }
+    .card-grid.two { grid-template-columns: repeat(2, 1fr); }
+    .card { display: flex; flex-direction: column; gap: 16px; }
+    .card .ph { width: 100%; background: var(--grey-300); border: 1px solid var(--grey-400); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--grey-500); font-size: 13px; }
+    .card.blog .ph { height: 200px; }
+    .card.programme .ph { height: 280px; }
+    .card h4 { font-size: var(--heading-4); font-weight: 500; line-height: 1.05; }
+    .card p { font-size: var(--body); line-height: 1.41; color: var(--black); }
+    .card .over { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--grey-500); }
+
+    /* Breadcrumb + nav */
+    .breadcrumb { background: var(--grey-50); padding: 16px 48px; font-size: 16px; border-radius: 8px; }
+    .breadcrumb .sep { color: var(--grey-400); margin: 0 4px; }
+    .navbar { display: flex; align-items: center; justify-content: space-between; background: var(--white); border: 1px solid var(--grey-300); border-radius: 12px; padding: 24px 32px; gap: 24px; flex-wrap: wrap; }
+    .navbar .logo { font-family: var(--font-brand); font-weight: 600; font-size: 24px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .navbar .links { display: flex; gap: 24px; }
+    .navbar .links a { font-size: 16px; font-weight: 600; padding: 8px 12px; border-radius: 8px; }
+    .navbar .links a.active { background: var(--grey-100); }
+
+    .callout { background: var(--grey-50); border-left: 3px solid var(--black); border-radius: 0 8px 8px 0; padding: 16px 20px; font-size: 14px; color: var(--black); }
+    .callout strong { font-weight: 600; }
+
+    @media (max-width: 900px) {
+      .card-grid.three { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .sg-page { padding: 40px 20px 64px; }
+      .sg-header h1 { font-size: 40px; }
+      .type-row { flex-direction: column; gap: 8px; }
+      .type-row .label { flex: none; }
+      .card-grid.three, .card-grid.two { grid-template-columns: 1fr; }
+      .space-row { flex-wrap: wrap; }
+      .space-row .label { flex: 0 0 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="sg-page">
+
+  <header class="sg-header">
+    <div class="eyebrow">Studio 51 · Team 51 at Automattic</div>
+    <h1>Wireframe Design System</h1>
+    <p>The reusable, brand-neutral baseline for Studio 51 wireframes and prototypes. Copy the tokens, build your wireframe, then override colours and fonts with the partner's brand during visual design.</p>
+    <nav class="sg-nav">
+      <a href="#colours">Colours</a>
+      <a href="#typography">Typography</a>
+      <a href="#spacing">Spacing</a>
+      <a href="#layout">Layout</a>
+      <a href="#radius">Radius &amp; Shadows</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#inputs">Inputs &amp; Tags</a>
+      <a href="#cards">Cards</a>
+      <a href="#nav">Nav &amp; Breadcrumbs</a>
+      <a href="#responsive">Responsive</a>
+    </nav>
+  </header>
+
+  <!-- COLOURS -->
+  <section class="sg-section" id="colours">
+    <h2 class="sg-section-title">Colours</h2>
+    <p class="sg-section-desc">Neutrals only. No accent colours in wireframes — partner brand colours replace or extend this palette during the design phase. Sections alternate white and grey-50 for rhythm without colour; footers use black.</p>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:#FFFFFF; border-bottom:1px solid var(--grey-300);"></div><div class="meta"><div class="name">white</div><div class="hex">#FFFFFF</div><div class="use">Page backgrounds, button text on dark</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#F2F4F8;"></div><div class="meta"><div class="name">grey-50</div><div class="hex">#F2F4F8</div><div class="use">Alternate sections, breadcrumb bar</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#F3F3F3;"></div><div class="meta"><div class="name">grey-100</div><div class="hex">#F3F3F3</div><div class="use">Active nav item background</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#E4E4E4;"></div><div class="meta"><div class="name">grey-200</div><div class="hex">#E4E4E4</div><div class="use">Footer body text on dark</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#DFE4EA;"></div><div class="meta"><div class="name">grey-300</div><div class="hex">#DFE4EA</div><div class="use">Placeholders, tag borders, dividers</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#BCC1CB;"></div><div class="meta"><div class="name">grey-400</div><div class="hex">#BCC1CB</div><div class="use">Placeholder borders, secondary borders</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#5C5E65;"></div><div class="meta"><div class="name">grey-500</div><div class="hex">#5C5E65</div><div class="use">Muted text, overline labels</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#25282D;"></div><div class="meta"><div class="name">black</div><div class="hex">#25282D</div><div class="use">Primary text, fills, dark sections</div></div></div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section class="sg-section" id="typography">
+    <h2 class="sg-section-title">Typography</h2>
+    <p class="sg-section-desc">Primary family is Inter Variable. Headings use tight 100% line-height for a compact editorial feel; body uses a generous 141%. Letter spacing is 0 across all styles — do not add tracking.</p>
+
+    <div class="sg-sub">Font stack</div>
+    <table>
+      <thead><tr><th>Role</th><th>Family</th><th>Fallback</th></tr></thead>
+      <tbody>
+        <tr><td>Primary</td><td>Inter Variable</td><td>sans-serif</td></tr>
+        <tr><td>Brand / Logo</td><td>Swap per partner (e.g. Akzidenz-Grotesk BQ)</td><td>sans-serif</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sg-sub">Scale</div>
+    <div class="type-row"><div class="label"><code>heading-1</code><div class="specs">56px · 600 · 100%</div></div><div class="specimen t-h1">Page titles</div></div>
+    <div class="type-row"><div class="label"><code>heading-2</code><div class="specs">40px · 600 · 100%</div></div><div class="specimen t-h2">Section headings</div></div>
+    <div class="type-row"><div class="label"><code>heading-3</code><div class="specs">32px · 500 · 100%</div></div><div class="specimen t-h3">Sub-sections</div></div>
+    <div class="type-row"><div class="label"><code>heading-4</code><div class="specs">28px · 500 · 100%</div></div><div class="specimen t-h4">Card titles</div></div>
+    <div class="type-row"><div class="label"><code>heading-5</code><div class="specs">22px · 600 · 100%</div></div><div class="specimen t-h5">Subtitles, sidebar headings</div></div>
+    <div class="type-row"><div class="label"><code>heading-6</code><div class="specs">16px · 600 · 100%</div></div><div class="specimen t-h6">Buttons, nav links, overlines</div></div>
+    <div class="type-row"><div class="label"><code>body</code><div class="specs">16px · 400 · 141%</div></div><div class="specimen t-body">Paragraph text and descriptions read comfortably at a generous line-height for long-form content.</div></div>
+    <div class="type-row"><div class="label"><code>body-large</code><div class="specs">18px · 400 · 26px</div></div><div class="specimen t-body-lg">Footer address and contact</div></div>
+    <div class="type-row"><div class="label"><code>small</code><div class="specs">14px · 400 · 26px</div></div><div class="specimen t-small">Legal text, copyright</div></div>
+  </section>
+
+  <!-- SPACING -->
+  <section class="sg-section" id="spacing">
+    <h2 class="sg-section-title">Spacing</h2>
+    <p class="sg-section-desc">A single content-spacing scale plus fluid page-level tokens. Section title to content is <code>gap-xl</code> (48px); card grids use <code>gap-lg</code> (32px) both directions.</p>
+
+    <div class="sg-sub">Content scale</div>
+    <div class="space-row"><div class="label"><code>gap-xs</code> · 8px</div><div class="bar" style="width:8px;"></div></div>
+    <div class="space-row"><div class="label"><code>gap-sm</code> · 16px</div><div class="bar" style="width:16px;"></div></div>
+    <div class="space-row"><div class="label"><code>gap-md</code> · 24px</div><div class="bar" style="width:24px;"></div></div>
+    <div class="space-row"><div class="label"><code>gap-lg</code> · 32px</div><div class="bar" style="width:32px;"></div></div>
+    <div class="space-row"><div class="label"><code>gap-xl</code> · 48px</div><div class="bar" style="width:48px;"></div></div>
+    <div class="space-row"><div class="label"><code>gap-2xl</code> · 56px</div><div class="bar" style="width:56px;"></div></div>
+    <div class="space-row"><div class="label"><code>gap-3xl</code> · 64px</div><div class="bar" style="width:64px;"></div></div>
+    <div class="space-row"><div class="label"><code>gap-4xl</code> · 72px</div><div class="bar" style="width:72px;"></div></div>
+    <div class="space-row"><div class="label"><code>gap-5xl</code> · 88px</div><div class="bar" style="width:88px;"></div></div>
+
+    <div class="sg-sub">Fluid page-level (375px → 1440px)</div>
+    <table>
+      <thead><tr><th>Token</th><th>Min</th><th>Max</th><th>CSS</th></tr></thead>
+      <tbody>
+        <tr><td><code>page-gutter</code></td><td>20px</td><td>64px</td><td><code>clamp(20px, 2.75vw + 10px, 64px)</code></td></tr>
+        <tr><td><code>section-padding</code></td><td>48px</td><td>80px</td><td><code>clamp(48px, 2vw + 40px, 80px)</code></td></tr>
+        <tr><td><code>grid-gutter</code></td><td>16px</td><td>32px</td><td><code>clamp(16px, 1vw + 12px, 32px)</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- LAYOUT -->
+  <section class="sg-section" id="layout">
+    <h2 class="sg-section-title">Layout</h2>
+    <p class="sg-section-desc">Content width is always 1344px (page width minus gutters) — never full-bleed text. Section backgrounds are full-bleed to 1440px; content within is constrained by gutters.</p>
+    <table>
+      <thead><tr><th>Layout</th><th>Columns</th><th>Column width</th><th>Gap</th><th>Content width</th></tr></thead>
+      <tbody>
+        <tr><td>Page max</td><td>—</td><td>1440px</td><td>—</td><td>Body centred beyond this</td></tr>
+        <tr><td>Content area</td><td>—</td><td>1344px</td><td>—</td><td>1440 − 2×48px gutter</td></tr>
+        <tr><td>3-column cards</td><td>3</td><td>427px</td><td>32px</td><td>1344px</td></tr>
+        <tr><td>2-column cards</td><td>2</td><td>656px</td><td>32px</td><td>1344px</td></tr>
+        <tr><td>Content + sidebar</td><td>~60/40</td><td>771 / 427px</td><td>flexible</td><td>1344px</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- RADIUS -->
+  <section class="sg-section" id="radius">
+    <h2 class="sg-section-title">Border Radius &amp; Shadows</h2>
+    <p class="sg-section-desc">Four-step radius scale. No shadows in wireframes — depth is introduced during the visual design phase.</p>
+    <div class="radius-grid">
+      <div class="radius-demo"><div class="box" style="border-radius:8px;"></div><div class="cap">radius-sm<code>8px · tags, placeholders</code></div></div>
+      <div class="radius-demo"><div class="box" style="border-radius:16px;"></div><div class="cap">radius-md<code>16px · frame containers</code></div></div>
+      <div class="radius-demo"><div class="box" style="border-radius:32px;"></div><div class="cap">radius-lg<code>32px · input fields</code></div></div>
+      <div class="radius-demo"><div class="box" style="border-radius:80px;"></div><div class="cap">radius-full<code>80px · buttons (pill)</code></div></div>
+    </div>
+  </section>
+
+  <!-- BUTTONS -->
+  <section class="sg-section" id="buttons">
+    <h2 class="sg-section-title">Buttons</h2>
+    <p class="sg-section-desc">Full-pill shape (radius 80px), <code>heading-6</code> text (16px SemiBold), 24/12px padding. With an icon: 10px gap, right padding reduced to 18px.</p>
+    <div class="sg-sub">Variants</div>
+    <div class="btn-row">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-secondary">Secondary</button>
+    </div>
+    <div class="sg-sub">Inverted (on dark)</div>
+    <div class="on-dark"><div class="btn-row"><button class="btn btn-inverted">Inverted</button></div></div>
+  </section>
+
+  <!-- INPUTS & TAGS -->
+  <section class="sg-section" id="inputs">
+    <h2 class="sg-section-title">Inputs, Tags &amp; Filter Pills</h2>
+    <p class="sg-section-desc">Inputs: 43px tall, 32px radius, 1px black border. Tags: 8px radius, grey-300 border. Filter pills reuse the button pill; active fills black, inactive is the secondary outline.</p>
+
+    <div class="sg-sub">Input field</div>
+    <input class="field" type="text" placeholder="Search…">
+
+    <div class="sg-sub">Tags</div>
+    <div class="tag-row">
+      <span class="tag">Feature</span>
+      <span class="tag">Interview</span>
+      <span class="tag">Review</span>
+    </div>
+
+    <div class="sg-sub">Filter pills</div>
+    <div class="tag-row">
+      <span class="pill pill-active">All</span>
+      <span class="pill pill-inactive">Fiction</span>
+      <span class="pill pill-inactive">Non-fiction</span>
+    </div>
+  </section>
+
+  <!-- CARDS -->
+  <section class="sg-section" id="cards">
+    <h2 class="sg-section-title">Cards</h2>
+    <p class="sg-section-desc">Image placeholder + overline + title + description, stacked with <code>gap-sm</code> (16px). Blog cards run 3-up (239px image); programme cards run 2-up (356px image).</p>
+
+    <div class="sg-sub">Blog card — 3 column</div>
+    <div class="card-grid three">
+      <article class="card blog"><div class="ph">Image placeholder</div><div class="over">Feature</div><h4>The title of a blog card</h4><p>A short standfirst describing the article in one or two lines of body copy.</p></article>
+      <article class="card blog"><div class="ph">Image placeholder</div><div class="over">Interview</div><h4>Another editorial card</h4><p>A short standfirst describing the article in one or two lines of body copy.</p></article>
+      <article class="card blog"><div class="ph">Image placeholder</div><div class="over">Review</div><h4>A third card in the row</h4><p>A short standfirst describing the article in one or two lines of body copy.</p></article>
+    </div>
+
+    <div class="sg-sub">Programme card — 2 column</div>
+    <div class="card-grid two">
+      <article class="card programme"><div class="ph">Image placeholder</div><div class="over">Programme</div><h4>A larger two-up card</h4><p>More room for a longer description across two lines of body copy in the wider layout.</p></article>
+      <article class="card programme"><div class="ph">Image placeholder</div><div class="over">Programme</div><h4>Its neighbour</h4><p>More room for a longer description across two lines of body copy in the wider layout.</p></article>
+    </div>
+  </section>
+
+  <!-- NAV -->
+  <section class="sg-section" id="nav">
+    <h2 class="sg-section-title">Navigation &amp; Breadcrumbs</h2>
+    <p class="sg-section-desc">Nav bar: white, 24/48px padding, SemiBold links, active item on grey-100 with 8px radius. Breadcrumbs sit on a grey-50 bar with " / " separators.</p>
+
+    <div class="sg-sub">Navigation bar</div>
+    <div class="navbar">
+      <div class="logo">Partner</div>
+      <div class="links">
+        <a href="#" class="active">Home</a>
+        <a href="#">Magazine</a>
+        <a href="#">Reviews</a>
+        <a href="#">About</a>
+      </div>
+      <button class="btn btn-primary">Subscribe</button>
+    </div>
+
+    <div class="sg-sub">Breadcrumbs</div>
+    <div class="breadcrumb">Home <span class="sep">/</span> Reviews <span class="sep">/</span> Book title</div>
+  </section>
+
+  <!-- RESPONSIVE -->
+  <section class="sg-section" id="responsive">
+    <h2 class="sg-section-title">Responsive Framework</h2>
+    <p class="sg-section-desc">Every prototype must be fully responsive between 375px and 1440px. No <code>max-width</code> on body — section backgrounds stretch edge to edge; inner containers carry the 1440px cap. No horizontal scroll at 375px, ever.</p>
+    <table>
+      <thead><tr><th>Layout</th><th>Desktop (≥1025px)</th><th>Tablet (769–1024px)</th><th>Mobile (375–768px)</th></tr></thead>
+      <tbody>
+        <tr><td>Card grid (3-col)</td><td>3 columns</td><td>2 columns</td><td>1 column</td></tr>
+        <tr><td>Card grid (2-col)</td><td>2 columns</td><td>2 columns</td><td>1 column</td></tr>
+        <tr><td>Content + sidebar</td><td>60/40 split</td><td>Stack</td><td>Stack</td></tr>
+        <tr><td>Footer columns</td><td>3 columns</td><td>2 columns</td><td>1 column</td></tr>
+        <tr><td>Navigation</td><td>Full horizontal</td><td>Condensed</td><td>Hamburger</td></tr>
+      </tbody>
+    </table>
+    <div class="callout" style="margin-top:24px;"><strong>Media queries are desktop-first</strong> (<code>max-width</code>) to match WordPress block theme conventions. Type and page spacing interpolate fluidly via <code>clamp()</code> — no stepped breakpoints needed for those.</div>
+  </section>
+
+  <footer style="border-top:2px solid var(--black); padding-top:24px; font-size:13px; color:var(--grey-500);">
+    Studio 51 Wireframe Design System · Full spec in <code>design-system.md</code> · Maps 1:1 to WordPress <code>theme.json</code>.
+  </footer>
+
+</div>
+</body>
+</html>
