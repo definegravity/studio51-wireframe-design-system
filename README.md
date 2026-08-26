@@ -1,6 +1,6 @@
-# Studio 51 — Wireframe Design System
+# Wireframe Design System
 
-The reusable, brand-neutral design system Studio 51 (Team 51 at Automattic) uses as the baseline for partner wireframes and prototypes. Copy the tokens, build your wireframe, then override colours and fonts with the partner's brand during visual design.
+The reusable, brand-neutral design system for partner wireframes and prototypes. Copy the tokens, build your wireframe, then override colours and fonts with the partner's brand during visual design.
 
 This is the system behind the Locus Magazine prototypes, extracted back to its neutral baseline so any project can start from it.
 
