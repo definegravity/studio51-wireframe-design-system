@@ -23,14 +23,15 @@ Extracted from the ADCE Redesign wireframes. Use as a reusable baseline for all 
 | `heading-4` | 28px | 500 | Medium | 100% | Card titles |
 | `heading-5` | 22px | 600 | SemiBold | 100% | Subtitles, sidebar headings |
 | `heading-6` | 16px | 600 | SemiBold | 100% | Button text, nav links, overlines, footer category labels |
-| `body` | 16px | 400 | Regular | 1.41 (141%) | Paragraph text, descriptions, breadcrumbs |
-| `body-large` | 18px | 400 | Regular | 26px | Footer address/contact |
-| `small` | 14px | 400 | Regular | 26px | Legal text, copyright |
+| `body` | 16px | 400 | Regular | 150% | Paragraph text, descriptions, breadcrumbs |
+| `body-large` | 18px | 400 | Regular | 150% | Footer address/contact |
+| `small` | 14px | 400 | Regular | 150% | Legal text, copyright |
 
 ### Typography Rules
 
 - **Headings** use tight line-height (100%) for a compact, editorial feel.
-- **Body text** uses a generous 141% line-height for readability.
+- **Body text** uses a generous 150% line-height for readability. All body-family styles (body, body-large, small) share 150%.
+- **Line height is expressed in percentages** across the whole scale: 100% for headings, 150% for body-family text.
 - **Overline/category labels** (e.g. footer section headers) use `heading-6` in uppercase with muted colour (`grey-500`).
 - **Navigation links** use `heading-6` weight (SemiBold) at body size.
 - **Letter spacing** is 0 across all styles; do not add tracking.

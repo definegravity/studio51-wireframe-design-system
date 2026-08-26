@@ -38,6 +38,10 @@
   --body-large: 18px;
   --small:      14px;
 
+  /* Line height, as percentages. Unitless value = the percentage. */
+  --lh-heading: 1;   /* 100% — all headings, tight editorial feel */
+  --lh-body:    1.5; /* 150% — body, body-large, small */
+
   /* ---- Spacing scale ---- */
   --gap-xs:  8px;
   --gap-sm:  16px;

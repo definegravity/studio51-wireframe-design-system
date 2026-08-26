@@ -25,7 +25,7 @@ This is the system behind the Locus Magazine prototypes, extracted back to its n
 ## Principles
 
 - **Neutrals only in wireframes.** No accent colours — partner brand colours come in during design.
-- **Editorial headings, readable body.** Headings at tight 100% line-height; body at a generous 141%.
+- **Editorial headings, readable body.** Headings at tight 100% line-height; the body family at a generous 150%.
 - **Full-pill buttons, square-ish cards.** Consistent component language across projects.
 - **Fully responsive, 375px → 1440px.** No `max-width` on `body`; no horizontal scroll at 375px, ever. Type and page spacing scale fluidly via `clamp()`.
 - **Maps 1:1 to WordPress.** Every token translates directly to block-theme `theme.json`: typography presets, colour palette, spacing scale, layout widths.
